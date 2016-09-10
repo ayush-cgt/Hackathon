@@ -30,7 +30,7 @@ public class DataProviderContract {
      * The MIME type for a content URI that would return multiple rows
      * <P>Type: TEXT</P>
      */
-    public static final String MIME_TYPE_ROWS = "vnd.android.cursor.dir/vnd.com.liveeasy";
+    public static final String MIME_TYPE_ROWS = "vnd.android.cursor.dir/vnd.com.cgt";
 
     public static final class User implements BaseColumns {
         // User table name
@@ -43,13 +43,74 @@ public class DataProviderContract {
         public static final String USER_NAME = "username";
         public static final String PASSWORD = "password";
         public static final String NAME = "name";
-        public static final String USER_PICTURE = "photo";
+        public static final String PHOTO = "photo";
+        public static final String EMAIL = "email";
 
         // create Users table
         public static final String CREATE_TABLE =
-                "CREATE TABLE User (_id INTEGER NOT NULL, username TEXT NOT NULL, password TEXT NOT NULL, name TEXT NOT NULL, photo TEXT NOT NULL);";
+                "CREATE TABLE User (_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL, name TEXT NOT NULL, photo TEXT NOT NULL, email TEXT NOT NULL);";
     }
 
+    public static final class Client implements BaseColumns {
+        // Client table name
+        public static final String TABLE_NAME = "client";
+
+        // Client table content URI
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(DATABASE_URI, TABLE_NAME);
+
+        // Client table column names
+        public static final String NAME = "name";
+        public static final String COMPANY = "company";
+        public static final String COUNTRY = "country";
+        public static final String CITY = "city";
+        public static final String ZIP = "zip";
+        public static final String ADDRESS = "address";
+        public static final String PHONE = "phone";
+        public static final String EMAIL = "email";
+
+
+        // create Client table
+        public static final String CREATE_TABLE =
+                "CREATE TABLE client (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, company TEXT NOT NULL, country TEXT NOT NULL, city TEXT NOT NULL, zip TEXT NOT NULL, address TEXT NOT NULL, phone TEXT NOT NULL, email TEXT NOT NULL);";
+    }
+
+    public static final class Income implements BaseColumns {
+        // Income table name
+        public static final String TABLE_NAME = "income";
+
+        // Income table content URI
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(DATABASE_URI, TABLE_NAME);
+
+        // Income table column names
+        public static final String CLIENT_ID = "client_id";
+        public static final String TYPE = "type";
+        public static final String PROJECT = "project";
+        public static final String AMOUNT_FOREIGN = "amount_foreign";
+        public static final String AMOUNT_INR = "amount_inr";
+        public static final String EXCHANGE_RATE = "exchange_rate";
+        public static final String PAYMENT_MODE = "payment_mode";
+
+
+        // create Income table
+        public static final String CREATE_TABLE =
+                "CREATE TABLE income (_id INTEGER PRIMARY KEY AUTOINCREMENT, client_id TEXT NOT NULL, type TEXT NOT NULL, project TEXT NOT NULL, amount_foreign TEXT NOT NULL, amount_inr TEXT NOT NULL, exchange_rate TEXT NOT NULL, payment_mode TEXT NOT NULL);";
+    }
+
+    public static final class ExpenseMaster implements BaseColumns {
+        // ExpenseMaster table name
+        public static final String TABLE_NAME = "expense_master";
+
+        // ExpenseMaster table content URI
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(DATABASE_URI, TABLE_NAME);
+
+        // ExpenseMaster table column names
+        public static final String TYPE = "type";
+
+
+        // create ExpenseMaster table
+        public static final String CREATE_TABLE =
+                "CREATE TABLE expense_master (_id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT NOT NULL);";
+    }
 
 
 }
