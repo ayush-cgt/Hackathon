@@ -25,8 +25,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Income"
                 android:padding="5dp"
+                android:text="Income"
                 android:textSize="18sp" />
 
             <Spinner
@@ -42,8 +42,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Income Type"
                 android:padding="5dp"
+                android:text="Income Type"
                 android:textSize="18sp" />
 
             <Spinner
@@ -51,7 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:entries="@array/type_arrays"
                 android:gravity="left"
                 android:padding="5dp"
                 android:prompt="@string/type_prompt" />
@@ -59,8 +58,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Client"
                 android:padding="5dp"
+                android:text="Client"
                 android:textSize="18sp" />
 
             <Spinner
@@ -76,8 +75,8 @@
                 android:id="@+id/project"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:padding="5dp">
 
                 <EditText
                     android:id="@+id/input_project"
@@ -95,8 +94,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:padding="5dp"
                 android:orientation="horizontal"
+                android:padding="5dp"
                 android:weightSum="1">
 
                 <android.support.design.widget.TextInputLayout
@@ -105,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".6">
 
-                    <EditText
+                    <com.android.myapplication.common.ThresholdEditText
                         android:id="@+id/input_forign"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -129,21 +128,23 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/exchange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="Exchange Value"
                 android:padding="5dp"
+                android:text="Exchange Value"
                 android:textSize="18sp" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/amountinr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:padding="5dp">
 
-                <EditText
+                <com.android.myapplication.common.ThresholdEditText
+
                     android:id="@+id/input_amountinr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -158,8 +159,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mode of Payment"
                 android:padding="5dp"
+                android:text="Mode of Payment"
                 android:textSize="18sp" />
 
             <Spinner
@@ -185,8 +186,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="2dp"
-                android:text=""
                 android:padding="5dp"
+                android:text=""
                 android:textSize="18sp" />
 
             <Button
