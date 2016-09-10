@@ -58,7 +58,7 @@ public class DataProviderContract {
 
         // create Users table
         public static final String CREATE_TABLE =
-                "CREATE TABLE User (_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL, name TEXT NOT NULL, photo TEXT NOT NULL, email TEXT NOT NULL);";
+                "CREATE TABLE user (_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL, name TEXT NOT NULL, photo TEXT NOT NULL, email TEXT NOT NULL);";
     }
 
     public static final class Client implements BaseColumns {
@@ -97,6 +97,52 @@ public class DataProviderContract {
                 "CREATE TABLE client (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, company TEXT NOT NULL, country TEXT NOT NULL, city TEXT NOT NULL, zip TEXT NOT NULL, address TEXT NOT NULL, phone TEXT NOT NULL, email TEXT NOT NULL);";
     }
 
+    public static final class IncomeMaster implements BaseColumns {
+        // IncomeMaster table name
+        public static final String TABLE_NAME = "income_master";
+
+        // IncomeMaster table content URI
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(DATABASE_URI, TABLE_NAME);
+
+        // IncomeMaster table column names
+        public static final String TYPE = "type";
+
+        public static final String[] PROJECTION =
+                {
+                        _ID,
+                        TYPE,
+                };
+
+
+        // create IncomeMaster table
+        public static final String CREATE_TABLE =
+                "CREATE TABLE income_master (_id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT NOT NULL);";
+    }
+
+    public static final class IncomeSubType implements BaseColumns {
+        // IncomeSubType table name
+        public static final String TABLE_NAME = "income_subtype";
+
+        // IncomeSubType table content URI
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(DATABASE_URI, TABLE_NAME);
+
+        // IncomeSubType table column names
+        public static final String NAME = "name";
+        public static final String MASTER_ID = "master_id";
+
+        public static final String[] PROJECTION =
+                {
+                        _ID,
+                        NAME,
+                        MASTER_ID
+                };
+
+
+        // create IncomeSubType table
+        public static final String CREATE_TABLE =
+                "CREATE TABLE income_subtype (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, master_id INTEGER NOT NULL);";
+    }
+
     public static final class Income implements BaseColumns {
         // Income table name
         public static final String TABLE_NAME = "income";
@@ -132,7 +178,7 @@ public class DataProviderContract {
 
         // create Income table
         public static final String CREATE_TABLE =
-                "CREATE TABLE income (_id INTEGER PRIMARY KEY AUTOINCREMENT, client_id TEXT NOT NULL, type TEXT NOT NULL, project TEXT NOT NULL, amount_foreign TEXT NOT NULL, amount_inr TEXT NOT NULL, exchange_rate TEXT NOT NULL, payment_mode TEXT NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL);";
+                "CREATE TABLE income (_id INTEGER PRIMARY KEY AUTOINCREMENT, client_id INTEGER NOT NULL, type TEXT NOT NULL, project TEXT NOT NULL, amount_foreign REAL NOT NULL, amount_inr REAL NOT NULL, exchange_rate REAL NOT NULL, payment_mode INTEGER NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL);";
     }
 
     public static final class ExpenseMaster implements BaseColumns {
@@ -178,7 +224,7 @@ public class DataProviderContract {
 
         // create ExpenseSubType table
         public static final String CREATE_TABLE =
-                "CREATE TABLE expense_subtype (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, master_id TEXT NOT NULL);";
+                "CREATE TABLE expense_subtype (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, master_id INTEGER NOT NULL);";
     }
 
     public static final class Expense implements BaseColumns {
@@ -196,6 +242,7 @@ public class DataProviderContract {
         public static final String TITLE = "title";
         public static final String FINANCIAL_YEAR = "financial_year";
         public static final String MONTH = "month";
+        public static final String EXPENSE_ID = "expense_id";
 
 
         public static final String[] PROJECTION =
@@ -207,13 +254,14 @@ public class DataProviderContract {
                         PAYMENT_MODE,
                         TITLE,
                         FINANCIAL_YEAR,
-                        MONTH
+                        MONTH,
+                        EXPENSE_ID
                 };
 
 
         // create Expense table
         public static final String CREATE_TABLE =
-                "CREATE TABLE expense (_id INTEGER PRIMARY KEY AUTOINCREMENT, sub_id TEXT NOT NULL, amount TEXT NOT NULL, invoice_image_path TEXT NOT NULL, payment_mode INTEGER NOT NULL, title TEXT NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL);";
+                "CREATE TABLE expense (_id INTEGER PRIMARY KEY AUTOINCREMENT, sub_id TEXT NOT NULL, amount TEXT NOT NULL, invoice_image_path TEXT NOT NULL, payment_mode INTEGER NOT NULL, title TEXT NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL, expense_id INTEGER NOT NULL);";
     }
 
 }

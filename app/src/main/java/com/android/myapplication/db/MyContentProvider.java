@@ -21,6 +21,8 @@ public class MyContentProvider extends ContentProvider {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.User.TABLE_NAME, Constants.USER);
         uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.Client.TABLE_NAME, Constants.CLIENT);
+        uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.IncomeMaster.TABLE_NAME, Constants.INCOME_MASTER);
+        uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.IncomeSubType.TABLE_NAME, Constants.INCOME_SUBTYPE);
         uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.Income.TABLE_NAME, Constants.INCOME);
         uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.ExpenseMaster.TABLE_NAME, Constants.EXPENSE_MASTER);
         uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.ExpenseSubType.TABLE_NAME, Constants.EXPENSE_SUBTYPE);
@@ -90,6 +92,30 @@ public class MyContentProvider extends ContentProvider {
             case Constants.CLIENT:
                 // Inserts the row into the table and returns the new row's _id value
                 id = db.insert(DataProviderContract.Client.TABLE_NAME, "", values);
+
+                // If the insert succeeded, notify a change and return the new row's content URI.
+                if (-1 != id) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.withAppendedPath(uri, Long.toString(id));
+                } else {
+                    throw new SQLiteException("Insert error:" + uri);
+                }
+
+            case Constants.INCOME_MASTER:
+                // Inserts the row into the table and returns the new row's _id value
+                id = db.insert(DataProviderContract.IncomeMaster.TABLE_NAME, "", values);
+
+                // If the insert succeeded, notify a change and return the new row's content URI.
+                if (-1 != id) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.withAppendedPath(uri, Long.toString(id));
+                } else {
+                    throw new SQLiteException("Insert error:" + uri);
+                }
+
+            case Constants.INCOME_SUBTYPE:
+                // Inserts the row into the table and returns the new row's _id value
+                id = db.insert(DataProviderContract.IncomeSubType.TABLE_NAME, "", values);
 
                 // If the insert succeeded, notify a change and return the new row's content URI.
                 if (-1 != id) {
