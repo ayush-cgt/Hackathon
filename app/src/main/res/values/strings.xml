@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <string name="msg_no_clients">No Clients</string>
 </resources>
