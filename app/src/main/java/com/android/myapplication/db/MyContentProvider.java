@@ -344,6 +344,7 @@ public class MyContentProvider extends ContentProvider {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(DataProviderContract.User.CREATE_TABLE);
+
         }
 
         @Override
