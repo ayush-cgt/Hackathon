@@ -10,8 +10,8 @@
         android:layout_height="match_parent"
         android:cacheColorHint="#ffffffff"
         android:choiceMode="singleChoice"
-        android:divider="#DDDDDD"
-        android:dividerHeight="1dp" />
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp" />
 
     <TextView
         android:id="@android:id/empty"

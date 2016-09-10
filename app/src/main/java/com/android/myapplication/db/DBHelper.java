@@ -1,5 +1,6 @@
 package com.android.myapplication.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 import com.android.myapplication.data.Type;
@@ -25,6 +26,25 @@ public class DBHelper {
 
         return instance;
     }
+
+
+    public void insertClient(String name, String company, String country,
+                             String city, String zip, String address, String phone, String email) {
+        ContentValues values = new ContentValues();
+        values.put(DataProviderContract.Client.NAME, name);
+        values.put(DataProviderContract.Client.COMPANY, company);
+        values.put(DataProviderContract.Client.COUNTRY, country);
+        values.put(DataProviderContract.Client.CITY, city);
+        values.put(DataProviderContract.Client.ZIP, zip);
+        values.put(DataProviderContract.Client.ADDRESS, address);
+        values.put(DataProviderContract.Client.PHONE, phone);
+        values.put(DataProviderContract.Client.EMAIL, email);
+
+        context.getContentResolver().insert(DataProviderContract.Client.CONTENT_URI, values);
+        values.clear();
+    }
+
+
 
 
     public ArrayList<Type> getTypes() {

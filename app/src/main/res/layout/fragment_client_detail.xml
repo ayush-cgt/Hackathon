@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:hint="Enter client name"
+                android:enabled="false"
                 android:inputType="text"
                 android:singleLine="true"
                 android:maxLength="50"
@@ -44,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:hint="Enter company name"
+                android:enabled="false"
                 android:maxLength="50"
                 android:inputType="text"
                 android:singleLine="true"
@@ -63,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:inputType="textEmailAddress"
+                android:enabled="false"
                 android:maxLength="50"
                 android:hint="Enter email"
                 android:singleLine="true"
@@ -81,6 +84,7 @@
                 android:id="@+id/input_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:gravity="center_vertical"
                 android:hint="Enter country"
                 android:maxLength="50"
@@ -99,6 +103,7 @@
                 android:id="@+id/input_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:gravity="center_vertical"
                 android:hint="Enter city"
                 android:maxLength="50"
@@ -119,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:hint="Enter zip code"
+                android:enabled="false"
                 android:maxLength="20"
                 android:singleLine="true"
                 android:textColor="@color/black"
@@ -135,6 +141,7 @@
                 android:id="@+id/input_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:gravity="center_vertical"
                 android:hint="Enter address"
                 android:maxLength="250"
@@ -153,6 +160,7 @@
                 android:id="@+id/input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:gravity="center_vertical"
                 android:hint="Enter phone"
                 android:inputType="phone"
@@ -162,16 +170,6 @@
                 android:textSize="15dp" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_create"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@drawable/rect_shape"
-            android:gravity="center"
-            android:text="@string/create"
-            android:textColor="@color/white"
-            android:textSize="17dp" />
 
     </LinearLayout>
 

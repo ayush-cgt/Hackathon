@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.myapplication.R;
 import com.android.myapplication.common.Constants;
@@ -101,7 +102,15 @@ public class FragmentClients extends BaseFragment implements LoaderManager.Loade
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
+            TextView tv_clientName = (TextView) view.findViewById(R.id.tv_UserName);
+            TextView tv_company = (TextView) view.findViewById(R.id.tv_UserDetail);
 
+            String name = cursor.getString(cursor.getColumnIndex(DataProviderContract.Client.NAME));
+            String company = cursor.getString(cursor.getColumnIndex(DataProviderContract.Client.COMPANY));
+            String country = cursor.getString(cursor.getColumnIndex(DataProviderContract.Client.COUNTRY));
+
+            tv_clientName.setText(name);
+            tv_company.setText(company + ", " + country);
         }
     }
 
