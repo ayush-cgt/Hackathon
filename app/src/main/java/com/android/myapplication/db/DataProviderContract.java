@@ -46,6 +46,7 @@ public class DataProviderContract {
         public static final String PHOTO = "photo";
         public static final String EMAIL = "email";
 
+
         // create Users table
         public static final String CREATE_TABLE =
                 "CREATE TABLE User (_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL, name TEXT NOT NULL, photo TEXT NOT NULL, email TEXT NOT NULL);";
@@ -68,6 +69,19 @@ public class DataProviderContract {
         public static final String PHONE = "phone";
         public static final String EMAIL = "email";
 
+        public static final String[] PROJECTION =
+                {
+                        _ID,
+                        NAME,
+                        COMPANY,
+                        COUNTRY,
+                        CITY,
+                        ZIP,
+                        ADDRESS,
+                        PHONE,
+                        EMAIL,
+                };
+
 
         // create Client table
         public static final String CREATE_TABLE =
@@ -89,6 +103,18 @@ public class DataProviderContract {
         public static final String AMOUNT_INR = "amount_inr";
         public static final String EXCHANGE_RATE = "exchange_rate";
         public static final String PAYMENT_MODE = "payment_mode";
+
+        public static final String[] PROJECTION =
+                {
+                        _ID,
+                        CLIENT_ID,
+                        TYPE,
+                        PROJECT,
+                        AMOUNT_FOREIGN,
+                        AMOUNT_INR,
+                        EXCHANGE_RATE,
+                        PAYMENT_MODE,
+                };
 
 
         // create Income table
