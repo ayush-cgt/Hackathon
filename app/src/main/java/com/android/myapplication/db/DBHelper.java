@@ -66,6 +66,25 @@ public class DBHelper {
         cursor.close();
         return type;
     }
+    public ArrayList<Type> getSubTypes(String id) {
+        ArrayList<Type> type = new ArrayList<Type>();
 
+        android.database.Cursor cursor = context.getContentResolver().query(DataProviderContract.IncomeSubType.CONTENT_URI, DataProviderContract.IncomeSubType.PROJECTION,
+                DataProviderContract.IncomeSubType.MASTER_ID + "= ?", new String[]{id}, null);
+
+        if (cursor.getCount() > 0) {
+            int indexPID = cursor.getColumnIndex(DataProviderContract.IncomeSubType._ID);
+            int indexType = cursor.getColumnIndex(DataProviderContract.IncomeSubType.NAME);
+
+            while (cursor.moveToNext()) {
+                Type t = new Type();
+                t.setId(cursor.getString(indexPID));
+                t.setType(cursor.getString(indexType));
+                type.add(t);
+            }
+        }
+        cursor.close();
+        return type;
+    }
 
 }
