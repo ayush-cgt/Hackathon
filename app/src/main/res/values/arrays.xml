@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="IncomeMasterArray">
+        <item>firstIncomeMasterArray</item>
+        <item>secondIncomeMasterArray</item>
+        <item>thirdIncomeMasterArray</item>
+        <item>fourthIncomeMasterArray</item>
+        <item>fifthIncomeMasterArray</item>
+    </array>
+
+    <array name="IncomeSubTypeArray">
+        <item>firstIncomeSubTypeArray</item>
+        <item>secondIncomeSubTypeArray</item>
+        <item>thirdIncomeSubTypeArray</item>
+        <item>fourthIncomeSubTypeArray</item>
+        <item>fifthIncomeSubTypeArray</item>
+    </array>
+
+    <array name="ExpenseMasterArray">
+        <item>firstExpenseMasterArray</item>
+        <item>secondExpenseMasterArray</item>
+        <item>thirdExpenseMasterArray</item>
+        <item>fourthExpenseMasterArray</item>
+        <item>fifthExpenseMasterArray</item>
+    </array>
+
+    <array name="ExpenseSubTypeArray">
+        <item>firstExpenseMasterArray</item>
+        <item>secondExpenseMasterArray</item>
+        <item>thirdExpenseMasterArray</item>
+        <item>fourthExpenseMasterArray</item>
+        <item>fifthExpenseMasterArray</item>
+    </array>
+
+</resources>
