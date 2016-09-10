@@ -18,5 +18,24 @@
     <string-array name="type_arrays">
         <item>Sales</item>
     </string-array>
+    <string-array name="type_currency">
+        <item>$</item>
+        <item>€</item>
+        <item>£</item>
+        <item>៛</item>
 
+    </string-array>
+    <string-array name="mode">
+        <item>Paypal</item>
+        <item>Direct transfer</item>
+        <item>Western Union</item>
+        <item>Cash</item>
+    </string-array>
+
+    <string-array name="year">
+        <item>2015-16</item>
+    </string-array>
+    <string name="type_mode">Choose a payment mode</string>
+    <string name="income">Incomes</string>
+    <string name="add_income">Add Income</string>
 </resources>

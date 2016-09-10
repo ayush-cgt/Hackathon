@@ -29,15 +29,7 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                Intent in = new Intent(HomeActivity.this, AddClientActivity.class);
-                startActivity(in);
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -68,12 +60,8 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -90,13 +78,32 @@ public class HomeActivity extends AppCompatActivity
         switch (id) {
             case R.id.nav_client:
                 fab.setVisibility(View.VISIBLE);
+
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent in = new Intent(HomeActivity.this, AddClientActivity.class);
+                        startActivity(in);
+                    }
+                });
                 FragmentManager frManager = getFragmentManager();
                 FragmentClients fragment = new FragmentClients();
                 frManager.beginTransaction().add(R.id.container, fragment).commit();
                 setTitle(getResources().getString(R.string.clients));
-                    break;
+                break;
             case R.id.nav_income:
-                fab.setVisibility(View.GONE);
+                fab.setVisibility(View.VISIBLE);
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent in = new Intent(HomeActivity.this, AddIncomeActivity.class);
+                        startActivity(in);
+                    }
+                });
+                FragmentManager frManager1 = getFragmentManager();
+                FragmentClients fragment1 = new FragmentClients();
+                frManager1.beginTransaction().add(R.id.container, fragment1).commit();
+                setTitle(getResources().getString(R.string.income));
                 break;
             case R.id.nav_expanse:
                 fab.setVisibility(View.GONE);
