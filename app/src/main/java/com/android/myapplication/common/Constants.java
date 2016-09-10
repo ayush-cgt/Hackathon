@@ -67,4 +67,12 @@ public class Constants {
 
     // Loaders
     public static final int LOADER_CLIENTS = 1;
+    public static final int LOADER_EXPENSES = 2;
+
+    public static final String DIR_IMAGE = "image";
+
+    public static final String EXT_JPG = ".jpg";
+    public static final String PREFIX_IMG = "Img_";
+
+    public static final int PERMISSION_REQUEST_CODE_CAMERA = 1;
 }
