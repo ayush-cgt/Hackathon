@@ -102,7 +102,7 @@ public class HomeActivity extends AppCompatActivity
                 });
                 FragmentManager frManager1 = getFragmentManager();
                 FragmentClients fragment1 = new FragmentClients();
-                frManager1.beginTransaction().add(R.id.container, fragment1).commit();
+                frManager1.beginTransaction().replace(R.id.container, fragment1).commit();
                 setTitle(getResources().getString(R.string.income));
                 break;
             case R.id.nav_expanse:
