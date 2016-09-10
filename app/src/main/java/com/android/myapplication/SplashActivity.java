@@ -9,8 +9,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.android.myapplication.db.DataProviderContract;
+
+import java.util.ArrayList;
 
 /**
  * Created by birbal on 10/9/16.
@@ -55,7 +58,6 @@ public class SplashActivity extends AppCompatActivity {
         }, 2000);
     }
 
-
     void addMasterData() {
 
         addToDatabase(DataProviderContract.IncomeMaster.CONTENT_URI, DataProviderContract.IncomeMaster.TYPE, R.array.IncomeMasterArray);
@@ -78,7 +80,7 @@ public class SplashActivity extends AppCompatActivity {
                     if (uri == DataProviderContract.IncomeMaster.CONTENT_URI) {
                         addToDatabase(DataProviderContract.IncomeSubType.CONTENT_URI, DataProviderContract.IncomeSubType.MASTER_ID, masterId, DataProviderContract.IncomeSubType.NAME, R.array.IncomeSubTypeArray);
                     } else if (uri == DataProviderContract.ExpenseMaster.CONTENT_URI) {
-                        addToDatabase(DataProviderContract.ExpenseSubType.CONTENT_URI, DataProviderContract.ExpenseSubType.MASTER_ID, masterId, DataProviderContract.ExpenseSubType.NAME, R.array.ExpenseSubTypeArray);
+                        addToDatabase(DataProviderContract.ExpenseSubType.CONTENT_URI, DataProviderContract.ExpenseSubType.MASTER_ID, masterId, DataProviderContract.ExpenseSubType.NAME, i);
                     }
                 }
                 values.clear();
@@ -89,15 +91,17 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    void addToDatabase(Uri uri, String masterColumn, long masterId, String dataColumn, int resourceId) {
+    int[ ] expSubTypes = { R.array.oneSubTypeArray, R.array.twoSubTypeArray, R.array.threeSubTypeArray, R.array.fourSubTypeArray};
+
+    void addToDatabase(Uri uri, String masterColumn, long masterId, String dataColumn, int position) {
         ContentValues values = new ContentValues();
-        String[] dataArray = getResources().getStringArray(resourceId);
-
-
+        String[] dataArray = getResources().getStringArray(expSubTypes[position]);
         for (int i = 0; i < dataArray.length; i++) {
             try {
                 values.put(dataColumn, dataArray[i]);
                 values.put(masterColumn, masterId);
+
+
                 getContentResolver().insert(uri, values);
                 values.clear();
 
@@ -105,5 +109,6 @@ public class SplashActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
     }
 }
