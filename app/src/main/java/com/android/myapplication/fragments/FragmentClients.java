@@ -79,7 +79,7 @@ public class FragmentClients extends BaseFragment implements LoaderManager.Loade
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data.getCount() > 0) {
+        if (data != null && data.getCount() > 0) {
             notificationAdapter.changeCursor(data);
 
             // Reload notification when new push arrives

@@ -1,5 +1,7 @@
 package com.android.myapplication;
 
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,8 +15,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.myapplication.fragments.FragmentClients;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +28,14 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                Intent in = new Intent(HomeActivity.this, AddClientActivity.class);
+                startActivity(in);
             }
         });
 
@@ -80,16 +87,26 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_client) {
-
-        } else if (id == R.id.nav_income) {
-
-        } else if (id == R.id.nav_expanse) {
-
-        } else if (id == R.id.nav_report) {
-
-        } else if (id == R.id.nav_logout) {
-
+        switch (id) {
+            case R.id.nav_client:
+                fab.setVisibility(View.VISIBLE);
+                FragmentManager frManager = getFragmentManager();
+                FragmentClients fragment = new FragmentClients();
+                frManager.beginTransaction().add(R.id.container, fragment).commit();
+                setTitle(getResources().getString(R.string.clients));
+                    break;
+            case R.id.nav_income:
+                fab.setVisibility(View.GONE);
+                break;
+            case R.id.nav_expanse:
+                fab.setVisibility(View.GONE);
+                break;
+            case R.id.nav_report:
+                fab.setVisibility(View.GONE);
+                break;
+            case R.id.nav_logout:
+                fab.setVisibility(View.GONE);
+                break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
