@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -127,6 +128,19 @@ public class AddIncomeActivity extends BaseActivity {
 
         CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), DBHelper.getInstance(AddIncomeActivity.this).getTypes());
         income.setAdapter(customAdapter);
+
+        income.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     private void setUpTool() {
@@ -199,6 +213,41 @@ public class AddIncomeActivity extends BaseActivity {
         LayoutInflater inflter;
 
         public CustomAdapter(Context applicationContext, ArrayList<Type> type) {
+            this.context = applicationContext;
+            this.type = type;
+            inflter = (LayoutInflater.from(applicationContext));
+        }
+
+        @Override
+        public int getCount() {
+            return type.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            view = inflter.inflate(R.layout.customspinner, null);
+            TextView names = (TextView) view.findViewById(R.id.textView);
+            names.setText(type.get(i).getType());
+            return view;
+        }
+    }
+
+    public class CustomAdapterSubType extends BaseAdapter {
+        Context context;
+        ArrayList<Type> type;
+        LayoutInflater inflter;
+
+        public CustomAdapterSubType(Context applicationContext, ArrayList<Type> type) {
             this.context = applicationContext;
             this.type = type;
             inflter = (LayoutInflater.from(applicationContext));
