@@ -1,4 +1,4 @@
-package com.liveeasy.db;
+package com.android.myapplication.db;
 
 import android.net.Uri;
 import android.provider.BaseColumns;

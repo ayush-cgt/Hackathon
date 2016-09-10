@@ -1,4 +1,4 @@
-package com.liveeasy.db;
+package com.android.myapplication.db;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -57,10 +57,6 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public String getType(Uri uri) {
         switch (uriMatcher.match(uri)) {
-            case Constants.NOTIFICATION:
-                return DataProviderContract.MIME_TYPE_ROWS;
-            case Constants.MEDIA:
-                return DataProviderContract.MIME_TYPE_ROWS;
 
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
