@@ -152,7 +152,7 @@ public class DataProviderContract {
 
         // Income table column names
         public static final String CLIENT_ID = "client_id";
-        public static final String TYPE = "type";
+        public static final String SUBTYPE_ID = "subtype_id";
         public static final String PROJECT = "project";
         public static final String AMOUNT_FOREIGN = "amount_foreign";
         public static final String AMOUNT_INR = "amount_inr";
@@ -165,7 +165,7 @@ public class DataProviderContract {
                 {
                         _ID,
                         CLIENT_ID,
-                        TYPE,
+                        SUBTYPE_ID,
                         PROJECT,
                         AMOUNT_FOREIGN,
                         AMOUNT_INR,
@@ -178,7 +178,7 @@ public class DataProviderContract {
 
         // create Income table
         public static final String CREATE_TABLE =
-                "CREATE TABLE income (_id INTEGER PRIMARY KEY AUTOINCREMENT, client_id INTEGER NOT NULL, type TEXT NOT NULL, project TEXT NOT NULL, amount_foreign REAL NOT NULL, amount_inr REAL NOT NULL, exchange_rate REAL NOT NULL, payment_mode INTEGER NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL);";
+                "CREATE TABLE income (_id INTEGER PRIMARY KEY AUTOINCREMENT, client_id INTEGER NOT NULL, subtype_id INTEGER NOT NULL, project TEXT NOT NULL, amount_foreign REAL NOT NULL, amount_inr REAL NOT NULL, exchange_rate REAL NOT NULL, payment_mode INTEGER NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL);";
     }
 
     public static final class ExpenseMaster implements BaseColumns {
@@ -235,33 +235,35 @@ public class DataProviderContract {
         public static final Uri CONTENT_URI = Uri.withAppendedPath(DATABASE_URI, TABLE_NAME);
 
         // Expense table column names
-        public static final String SUB_ID = "sub_id";
+        public static final String SUBTYPE_ID = "subtype_id";
         public static final String AMOUNT = "amount";
         public static final String INVOICE_IMAGE_PATH = "invoice_image_path";
         public static final String PAYMENT_MODE = "payment_mode";
         public static final String TITLE = "title";
         public static final String FINANCIAL_YEAR = "financial_year";
         public static final String MONTH = "month";
-        public static final String EXPENSE_ID = "expense_id";
+        public static final String INCOME_ID = "income_id";
 
 
         public static final String[] PROJECTION =
                 {
                         _ID,
-                        SUB_ID,
+                        SUBTYPE_ID,
                         AMOUNT,
                         INVOICE_IMAGE_PATH,
                         PAYMENT_MODE,
                         TITLE,
                         FINANCIAL_YEAR,
                         MONTH,
-                        EXPENSE_ID
+                        INCOME_ID
                 };
 
 
         // create Expense table
         public static final String CREATE_TABLE =
-                "CREATE TABLE expense (_id INTEGER PRIMARY KEY AUTOINCREMENT, sub_id TEXT NOT NULL, amount TEXT NOT NULL, invoice_image_path TEXT NOT NULL, payment_mode INTEGER NOT NULL, title TEXT NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL, expense_id INTEGER NOT NULL);";
+                "CREATE TABLE expense (_id INTEGER PRIMARY KEY AUTOINCREMENT, subtype_id INTEGER NOT NULL, amount TEXT NOT NULL, invoice_image_path TEXT NOT NULL, payment_mode INTEGER NOT NULL, title TEXT NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL, income_id INTEGER NOT NULL);";
     }
+
+
 
 }
