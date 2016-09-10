@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.myapplication.R;
 import com.android.myapplication.common.Constants;
@@ -61,8 +62,8 @@ public class FragmentIncome extends BaseFragment implements LoaderManager.Loader
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getActivity(),                                     // Context
-                DataProviderContract.IncomeMaster.CONTENT_URI,       // Table to query
-                DataProviderContract.IncomeMaster.PROJECTION,              // Projection to return
+                DataProviderContract.Income.CONTENT_URI,       // Table to query
+                DataProviderContract.Income.PROJECTION,              // Projection to return
                 null,                                              // No selection clause
                 null,                                              // No selection arguments
                 null                                              // Default sort order
@@ -110,7 +111,14 @@ public class FragmentIncome extends BaseFragment implements LoaderManager.Loader
         public void bindView(View view, Context context, Cursor cursor) {
 
 
+            TextView tv_clientName = (TextView) view.findViewById(R.id.tv_UserName);
+            TextView tv_company = (TextView) view.findViewById(R.id.tv_UserDetail);
 
+            String name = cursor.getString(cursor.getColumnIndex(DataProviderContract.Income.PROJECT));
+            String company = cursor.getString(cursor.getColumnIndex(DataProviderContract.Income.AMOUNT_INR));
+
+            tv_clientName.setText(name);
+            tv_company.setText(company);
 
         }
     }

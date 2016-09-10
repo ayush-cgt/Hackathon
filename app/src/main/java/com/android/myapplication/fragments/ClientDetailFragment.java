@@ -1,19 +1,12 @@
 package com.android.myapplication.fragments;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatButton;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.android.myapplication.R;
-import com.android.myapplication.db.DBHelper;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 /**
@@ -44,7 +37,7 @@ public class ClientDetailFragment extends BaseFragment {
         input_address = (EditText) getView().findViewById(R.id.input_address);
         input_phone = (EditText) getView().findViewById(R.id.input_phone);
 
-
+        //Client client = DBHelper.getInstance(getActivity()).getTypes();
 
     }
 

@@ -2,7 +2,6 @@ package com.android.myapplication;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -22,9 +21,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.myapplication.common.ThresholdEditText;
-import com.android.myapplication.data.Type;
+import com.android.myapplication.module.Type;
 import com.android.myapplication.db.DBHelper;
-import com.android.myapplication.fragments.AddClientFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;

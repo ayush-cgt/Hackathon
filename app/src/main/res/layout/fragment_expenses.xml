@@ -16,6 +16,6 @@
     <TextView
         android:id="@android:id/empty"
         style="@style/emptyTextView"
-        android:text="@string/msg_no_clients" />
+        android:text="No Results" />
 
 </FrameLayout>

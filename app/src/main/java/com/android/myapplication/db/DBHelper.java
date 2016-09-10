@@ -3,7 +3,7 @@ package com.android.myapplication.db;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.android.myapplication.data.Type;
+import com.android.myapplication.module.Type;
 
 import java.util.ArrayList;
 

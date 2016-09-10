@@ -1,4 +1,4 @@
-package com.android.myapplication.data;
+package com.android.myapplication.module;
 
 /**
  * Created by sushil on 10/9/16.

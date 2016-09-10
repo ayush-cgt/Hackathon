@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import com.android.myapplication.fragments.BaseFragment;
 import com.android.myapplication.fragments.FragmentClients;
 import com.android.myapplication.fragments.FragmentExpenses;
+import com.android.myapplication.fragments.FragmentIncome;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,17 +57,13 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -91,7 +88,7 @@ public class HomeActivity extends AppCompatActivity
 
                 FragmentManager frManager = getFragmentManager();
                 FragmentClients fragment = new FragmentClients();
-                frManager.beginTransaction().add(R.id.container, fragment).commit();
+                frManager.beginTransaction().replace(R.id.container, fragment).commit();
                 setTitle(getResources().getString(R.string.clients));
                 break;
             case R.id.nav_income:
@@ -104,7 +101,7 @@ public class HomeActivity extends AppCompatActivity
                     }
                 });
                 FragmentManager frManager1 = getFragmentManager();
-                FragmentClients fragment1 = new FragmentClients();
+                FragmentIncome fragment1 = new FragmentIncome();
                 frManager1.beginTransaction().replace(R.id.container, fragment1).commit();
                 setTitle(getResources().getString(R.string.income));
                 break;
@@ -123,11 +120,12 @@ public class HomeActivity extends AppCompatActivity
                 setTitle(getResources().getString(R.string.expenses));
                 break;
             case R.id.nav_report:
+                setTitle(getResources().getString(R.string.expenses));
                 fab.setVisibility(View.GONE);
                 break;
-            case R.id.nav_logout:
+          /*  case R.id.nav_logout:
                 fab.setVisibility(View.GONE);
-                break;
+                break;*/
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -136,6 +134,6 @@ public class HomeActivity extends AppCompatActivity
 
     private void replaceFragment(BaseFragment fragment) {
         FragmentManager frManager = getFragmentManager();
-        frManager.beginTransaction().add(R.id.container, fragment).commit();
+        frManager.beginTransaction().replace(R.id.container, fragment).commit();
     }
 }
