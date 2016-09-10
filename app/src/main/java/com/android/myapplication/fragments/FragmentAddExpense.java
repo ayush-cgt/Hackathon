@@ -30,10 +30,9 @@ import com.android.myapplication.db.DataProviderContract;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentAddExpense extends BaseFragment implements FragmentAttachImage.onImageChoseListener {
+public class FragmentAddExpense extends BaseFragment {
 
     private Button btnAddInvoice, btnAddExpense = null;
-    private FragmentAttachImage mFragment;
     private Spinner spinnerType, spinnerSubType;
 
     public FragmentAddExpense() {
@@ -59,8 +58,6 @@ public class FragmentAddExpense extends BaseFragment implements FragmentAttachIm
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        mFragment = new FragmentAttachImage(getActivity(), this, 320, 480);
 
         btnAddInvoice = (Button) getView().findViewById(R.id.addInvoice);
         btnAddInvoice.setOnClickListener(new View.OnClickListener() {
@@ -114,21 +111,14 @@ public class FragmentAddExpense extends BaseFragment implements FragmentAttachIm
 
             switch (item.getItemId()) {
                 case R.id.actionCamera:
-                    mFragment.openCameraForImage(FragmentAddExpense.this);
                     break;
 
                 case R.id.actionGallery:
-                    mFragment.openGalleryForImage(FragmentAddExpense.this);
                     break;
             }
             return true;
         }
     };
-
-    @Override
-    public void onImageSelected(String imagePath) {
-
-    }
 
     private void bindMasterExpenses(Cursor cursor) {
         try {
