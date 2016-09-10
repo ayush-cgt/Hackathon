@@ -214,6 +214,36 @@ public class MyContentProvider extends ContentProvider {
                 returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
                 return returnCursor;
 
+            case Constants.INCOME_MASTER:
+                // Does the query against a read-only version of the database
+                returnCursor = db.query(
+                        DataProviderContract.IncomeMaster.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+
+                // Sets the ContentResolver to watch this content URI for data changes
+                returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
+                return returnCursor;
+
+            case Constants.INCOME_SUBTYPE:
+                // Does the query against a read-only version of the database
+                returnCursor = db.query(
+                        DataProviderContract.IncomeSubType.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+
+                // Sets the ContentResolver to watch this content URI for data changes
+                returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
+                return returnCursor;
+
             case Constants.INCOME:
                 // Does the query against a read-only version of the database
                 returnCursor = db.query(
