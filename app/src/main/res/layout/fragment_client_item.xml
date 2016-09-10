@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_row"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_UserName"
+        style="@style/Heading"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="Vin Diesel" />
+
+    <TextView
+        android:id="@+id/tv_UserDetail"
+        style="@style/SubHeading"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tv_UserName"
+        android:layout_marginTop="10dp"
+        android:text="US" />
+
+</RelativeLayout>
