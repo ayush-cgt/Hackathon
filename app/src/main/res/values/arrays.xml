@@ -2,35 +2,46 @@
 <resources>
 
     <array name="IncomeMasterArray">
-        <item>firstIncomeMasterArray</item>
-        <item>secondIncomeMasterArray</item>
-        <item>thirdIncomeMasterArray</item>
-        <item>fourthIncomeMasterArray</item>
-        <item>fifthIncomeMasterArray</item>
+        <item>Sales</item>
     </array>
 
     <array name="IncomeSubTypeArray">
-        <item>firstIncomeSubTypeArray</item>
-        <item>secondIncomeSubTypeArray</item>
-        <item>thirdIncomeSubTypeArray</item>
-        <item>fourthIncomeSubTypeArray</item>
-        <item>fifthIncomeSubTypeArray</item>
+        <item>Domestic</item>
+        <item>International</item>
     </array>
 
     <array name="ExpenseMasterArray">
-        <item>firstExpenseMasterArray</item>
-        <item>secondExpenseMasterArray</item>
-        <item>thirdExpenseMasterArray</item>
-        <item>fourthExpenseMasterArray</item>
-        <item>fifthExpenseMasterArray</item>
+        <item>Cost of services</item>
+        <item>General and Admin</item>
+        <item>Sales and Marketing Expenses</item>
+        <item>Finance</item>
     </array>
 
-    <array name="ExpenseSubTypeArray">
-        <item>firstExpenseMasterArray</item>
-        <item>secondExpenseMasterArray</item>
-        <item>thirdExpenseMasterArray</item>
-        <item>fourthExpenseMasterArray</item>
-        <item>fifthExpenseMasterArray</item>
+    <array name="oneSubTypeArray">
+        <item>Broad Band Expenses</item>
+        <item>Computer Expenses</item>
+        <item>Domain Name Expenses</item>
+        <item>Electricity and Water Expenses</item>
+        <item>Employer Contribution to PF</item>
     </array>
+
+    <array name="twoSubTypeArray">
+        <item>AMC Charges/Membership Fees</item>
+        <item>Discount</item>
+        <item>Legal and Fee Expenses</item>
+        <item>Insurance Expences</item>
+        <item>Postage and Stamp</item>
+    </array>
+
+    <array name="threeSubTypeArray">
+        <item>Advertisement Expenses</item>
+        <item>Sales Promotion Expenses</item>
+    </array>
+
+    <array name="fourSubTypeArray">
+        <item>Bank Charges</item>
+        <item>Interest</item>
+    </array>
+
 
 </resources>
