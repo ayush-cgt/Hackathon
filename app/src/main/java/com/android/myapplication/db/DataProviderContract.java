@@ -15,7 +15,7 @@ public class DataProviderContract {
     public static final String SCHEME = "content";
 
     // The provider's authority
-    public static final String AUTHORITY = "com.cgt";
+    public static final String AUTHORITY = "com.android.myapplication";
 
     // The DataProvider content URI
     public static final Uri DATABASE_URI = Uri.parse(SCHEME + "://" + AUTHORITY);
