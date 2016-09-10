@@ -43,14 +43,6 @@ public class FragmentClients extends BaseFragment implements LoaderManager.Loade
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        swipeRefreshLayout = (SwipeRefreshLayout) getView().findViewById(R.id.swipeRefreshLayout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                //fetchData();
-            }
-        });
-
         mListView = (ListView) getView().findViewById(R.id.listNotification);
         mListView.setEmptyView(getView().findViewById(android.R.id.empty));
 
@@ -82,13 +74,6 @@ public class FragmentClients extends BaseFragment implements LoaderManager.Loade
         if (data != null && data.getCount() > 0) {
             notificationAdapter.changeCursor(data);
 
-            // Reload notification when new push arrives
-            boolean reload = Preference.getInstance(getActivity()).getBoolean(Constants.PREF_KEY_RELOAD_NOTIFICATIONS);
-            if (reload) {
-                //showLoader();
-                //fetchData();
-                Preference.getInstance(getActivity()).put(Constants.PREF_KEY_RELOAD_NOTIFICATIONS, false);
-            }
         } else {
             //showLoader();
             //fetchData();
@@ -99,7 +84,6 @@ public class FragmentClients extends BaseFragment implements LoaderManager.Loade
     public void onLoaderReset(Loader<Cursor> loader) {
         notificationAdapter.changeCursor(null);
     }
-
 
 
     private class NotificationAdapter extends CursorAdapter {

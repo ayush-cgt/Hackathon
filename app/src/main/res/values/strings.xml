@@ -4,6 +4,7 @@
     <string name="clients">Clients</string>
     <string name="add_client">Add Client</string>
     <string name="msg_no_clients">No Clients</string>
+    <string name="create">Create</string>
 
     <string name="title_activity_home">HomeActivity</string>
 
