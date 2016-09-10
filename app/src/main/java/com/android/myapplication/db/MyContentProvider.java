@@ -344,6 +344,13 @@ public class MyContentProvider extends ContentProvider {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(DataProviderContract.User.CREATE_TABLE);
+            db.execSQL(DataProviderContract.Client.CREATE_TABLE);
+            db.execSQL(DataProviderContract.IncomeMaster.CREATE_TABLE);
+            db.execSQL(DataProviderContract.IncomeSubType.CREATE_TABLE);
+            db.execSQL(DataProviderContract.Income.CREATE_TABLE);
+            db.execSQL(DataProviderContract.ExpenseMaster.CREATE_TABLE);
+            db.execSQL(DataProviderContract.ExpenseSubType.CREATE_TABLE);
+            db.execSQL(DataProviderContract.Expense.CREATE_TABLE);
 
         }
 
@@ -353,3 +360,4 @@ public class MyContentProvider extends ContentProvider {
         }
     }
 }
+
