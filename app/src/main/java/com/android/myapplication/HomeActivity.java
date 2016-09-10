@@ -15,7 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.myapplication.fragments.BaseFragment;
 import com.android.myapplication.fragments.FragmentClients;
+import com.android.myapplication.fragments.FragmentExpenses;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -86,6 +88,7 @@ public class HomeActivity extends AppCompatActivity
                         startActivity(in);
                     }
                 });
+
                 FragmentManager frManager = getFragmentManager();
                 FragmentClients fragment = new FragmentClients();
                 frManager.beginTransaction().add(R.id.container, fragment).commit();
@@ -106,7 +109,18 @@ public class HomeActivity extends AppCompatActivity
                 setTitle(getResources().getString(R.string.income));
                 break;
             case R.id.nav_expanse:
-                fab.setVisibility(View.GONE);
+                fab.setVisibility(View.VISIBLE);
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent in = new Intent(HomeActivity.this, AddExpenseActivity.class);
+                        startActivity(in);
+                    }
+                });
+
+                FragmentExpenses fragmentExpenses = new FragmentExpenses();
+                replaceFragment(fragmentExpenses);
+                setTitle(getResources().getString(R.string.expenses));
                 break;
             case R.id.nav_report:
                 fab.setVisibility(View.GONE);
@@ -118,5 +132,10 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void replaceFragment(BaseFragment fragment) {
+        FragmentManager frManager = getFragmentManager();
+        frManager.beginTransaction().add(R.id.container, fragment).commit();
     }
 }

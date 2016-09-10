@@ -2,6 +2,7 @@ package com.android.myapplication.fragments;
 
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
@@ -12,7 +13,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.widget.PopupMenu;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -20,20 +20,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.myapplication.R;
 import com.android.myapplication.common.Constants;
+import com.android.myapplication.db.DBHelper;
 import com.android.myapplication.db.DataProviderContract;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentAddExpense extends BaseFragment implements FragmentAttachImage.onImageChoseListener {
+public class FragmentAddExpense extends BaseFragment {
 
     private Button btnAddInvoice, btnAddExpense = null;
-    private FragmentAttachImage mFragment;
     private Spinner spinnerType, spinnerSubType;
 
     public FragmentAddExpense() {
@@ -60,7 +61,7 @@ public class FragmentAddExpense extends BaseFragment implements FragmentAttachIm
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mFragment = new FragmentAttachImage(getActivity(), this, 320, 480);
+        //mFragment = new FragmentAttachImage(getActivity(), this, 320, 480);
 
         btnAddInvoice = (Button) getView().findViewById(R.id.addInvoice);
         btnAddInvoice.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +73,29 @@ public class FragmentAddExpense extends BaseFragment implements FragmentAttachIm
             }
         });
 
-        btnAddExpense = (Button) getView().findViewById(R.id.btnAddExpanses);
+        btnAddExpense = (Button) getView().findViewById(R.id.btnAdd);
         btnAddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String title = ((EditText) getView().findViewById(R.id.txtTitle)).getText().toString();
+                String amount = ((EditText) getView().findViewById(R.id.txtAmount)).getText().toString();
+                Cursor cursor = (Cursor) spinnerSubType.getAdapter().getItem(spinnerSubType.getSelectedItemPosition());
+                String id = cursor.getString(1);
 
+
+                ContentValues values = new ContentValues();
+                values.put(DataProviderContract.Expense.TITLE, title);
+                values.put(DataProviderContract.Expense.AMOUNT, amount);
+                values.put(DataProviderContract.Expense.SUBTYPE_ID, id);
+
+                DBHelper.getInstance(getActivity()).addExpense(values);
+
+                getActivity().finish();
             }
         });
+
+        spinnerType = (Spinner) getView().findViewById(R.id.spinType);
+        spinnerSubType = (Spinner) getView().findViewById(R.id.spinSubType);
 
         Cursor cursor = getActivity().getContentResolver().query(DataProviderContract.ExpenseMaster.CONTENT_URI,
                 DataProviderContract.ExpenseMaster.PROJECTION,
@@ -88,6 +105,8 @@ public class FragmentAddExpense extends BaseFragment implements FragmentAttachIm
 
         if (cursor.getCount() > 0) {
             bindMasterExpenses(cursor);
+        } else {
+            cursor.close();
         }
     }
 
@@ -114,21 +133,21 @@ public class FragmentAddExpense extends BaseFragment implements FragmentAttachIm
 
             switch (item.getItemId()) {
                 case R.id.actionCamera:
-                    mFragment.openCameraForImage(FragmentAddExpense.this);
+                    //mFragment.openCameraForImage(FragmentAddExpense.this);
                     break;
 
                 case R.id.actionGallery:
-                    mFragment.openGalleryForImage(FragmentAddExpense.this);
+                    //mFragment.openGalleryForImage(FragmentAddExpense.this);
                     break;
             }
             return true;
         }
     };
 
-    @Override
+    /*@Override
     public void onImageSelected(String imagePath) {
 
-    }
+    }*/
 
     private void bindMasterExpenses(Cursor cursor) {
         try {
@@ -164,6 +183,9 @@ public class FragmentAddExpense extends BaseFragment implements FragmentAttachIm
 
                     if (cursor.getCount() > 0) {
                         bindSubExpenses(cursor);
+                    } else {
+                        cursor.close();
+                        spinnerSubType.setAdapter(null);
                     }
                 }
 
@@ -194,7 +216,7 @@ public class FragmentAddExpense extends BaseFragment implements FragmentAttachIm
             );
 
             adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
-            spinnerType.setAdapter(adapter);
+            spinnerSubType.setAdapter(adapter);
         } catch (Exception e) {
             e.printStackTrace();
         }

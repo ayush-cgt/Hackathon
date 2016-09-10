@@ -261,9 +261,8 @@ public class DataProviderContract {
 
         // create Expense table
         public static final String CREATE_TABLE =
-                "CREATE TABLE expense (_id INTEGER PRIMARY KEY AUTOINCREMENT, subtype_id INTEGER NOT NULL, amount TEXT NOT NULL, invoice_image_path TEXT NOT NULL, payment_mode INTEGER NOT NULL, title TEXT NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL, income_id INTEGER NOT NULL);";
+                "CREATE TABLE expense (_id INTEGER PRIMARY KEY AUTOINCREMENT, subtype_id INTEGER NULL, amount TEXT NOT NULL, invoice_image_path TEXT, payment_mode INTEGER NULL, title TEXT NOT NULL, financial_year INTEGER  NULL, month INTEGER  NULL, income_id INTEGER NULL);";
     }
-
 
 
 }

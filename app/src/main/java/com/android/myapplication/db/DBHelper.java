@@ -1,5 +1,6 @@
 package com.android.myapplication.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 /**
@@ -22,5 +23,8 @@ public class DBHelper {
         return instance;
     }
 
+    public void addExpense(ContentValues values) {
+        context.getContentResolver().insert(DataProviderContract.Expense.CONTENT_URI, values);
+    }
 
 }

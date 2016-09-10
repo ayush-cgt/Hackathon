@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.myapplication.R;
 import com.android.myapplication.common.Constants;
@@ -95,7 +96,10 @@ public class FragmentExpenses extends BaseFragment implements LoaderManager.Load
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
-
+            TextView textView = (TextView) view.findViewById(R.id.title);
+            textView.setText(cursor.getString(cursor.getColumnIndex(DataProviderContract.Expense.TITLE)));
+            textView = (TextView) view.findViewById(R.id.amount);
+            textView.setText(cursor.getString(cursor.getColumnIndex(DataProviderContract.Expense.AMOUNT)));
         }
     }
 

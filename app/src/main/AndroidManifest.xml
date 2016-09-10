@@ -26,6 +26,10 @@
             android:name=".AddIncomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".AddExpenseActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
 
         <activity
             android:name=".SplashActivity"
