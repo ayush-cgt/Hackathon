@@ -46,6 +46,15 @@ public class DataProviderContract {
         public static final String PHOTO = "photo";
         public static final String EMAIL = "email";
 
+        public static final String[] PROJECTION =
+                {
+                        _ID,
+                        USER_NAME,
+                        PASSWORD,
+                        NAME,
+                        PHOTO,
+                        EMAIL
+                };
 
         // create Users table
         public static final String CREATE_TABLE =
@@ -79,7 +88,7 @@ public class DataProviderContract {
                         ZIP,
                         ADDRESS,
                         PHONE,
-                        EMAIL,
+                        EMAIL
                 };
 
 
@@ -103,6 +112,8 @@ public class DataProviderContract {
         public static final String AMOUNT_INR = "amount_inr";
         public static final String EXCHANGE_RATE = "exchange_rate";
         public static final String PAYMENT_MODE = "payment_mode";
+        public static final String FINANCIAL_YEAR = "financial_year";
+        public static final String MONTH = "month";
 
         public static final String[] PROJECTION =
                 {
@@ -114,12 +125,14 @@ public class DataProviderContract {
                         AMOUNT_INR,
                         EXCHANGE_RATE,
                         PAYMENT_MODE,
+                        FINANCIAL_YEAR,
+                        MONTH
                 };
 
 
         // create Income table
         public static final String CREATE_TABLE =
-                "CREATE TABLE income (_id INTEGER PRIMARY KEY AUTOINCREMENT, client_id TEXT NOT NULL, type TEXT NOT NULL, project TEXT NOT NULL, amount_foreign TEXT NOT NULL, amount_inr TEXT NOT NULL, exchange_rate TEXT NOT NULL, payment_mode TEXT NOT NULL);";
+                "CREATE TABLE income (_id INTEGER PRIMARY KEY AUTOINCREMENT, client_id TEXT NOT NULL, type TEXT NOT NULL, project TEXT NOT NULL, amount_foreign TEXT NOT NULL, amount_inr TEXT NOT NULL, exchange_rate TEXT NOT NULL, payment_mode TEXT NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL);";
     }
 
     public static final class ExpenseMaster implements BaseColumns {
@@ -132,11 +145,75 @@ public class DataProviderContract {
         // ExpenseMaster table column names
         public static final String TYPE = "type";
 
+        public static final String[] PROJECTION =
+                {
+                        _ID,
+                        TYPE
+                };
+
 
         // create ExpenseMaster table
         public static final String CREATE_TABLE =
                 "CREATE TABLE expense_master (_id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT NOT NULL);";
     }
 
+    public static final class ExpenseSubType implements BaseColumns {
+        // ExpenseSubType table name
+        public static final String TABLE_NAME = "expense_subtype";
+
+        // ExpenseSubType table content URI
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(DATABASE_URI, TABLE_NAME);
+
+        // ExpenseSubType table column names
+        public static final String NAME = "name";
+        public static final String MASTER_ID = "master_id";
+
+        public static final String[] PROJECTION =
+                {
+                        _ID,
+                        NAME,
+                        MASTER_ID
+                };
+
+
+        // create ExpenseSubType table
+        public static final String CREATE_TABLE =
+                "CREATE TABLE expense_subtype (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, master_id TEXT NOT NULL);";
+    }
+
+    public static final class Expense implements BaseColumns {
+        // Expense table name
+        public static final String TABLE_NAME = "expense";
+
+        // Expense table content URI
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(DATABASE_URI, TABLE_NAME);
+
+        // Expense table column names
+        public static final String SUB_ID = "sub_id";
+        public static final String AMOUNT = "amount";
+        public static final String INVOICE_IMAGE_PATH = "invoice_image_path";
+        public static final String PAYMENT_MODE = "payment_mode";
+        public static final String TITLE = "title";
+        public static final String FINANCIAL_YEAR = "financial_year";
+        public static final String MONTH = "month";
+
+
+        public static final String[] PROJECTION =
+                {
+                        _ID,
+                        SUB_ID,
+                        AMOUNT,
+                        INVOICE_IMAGE_PATH,
+                        PAYMENT_MODE,
+                        TITLE,
+                        FINANCIAL_YEAR,
+                        MONTH
+                };
+
+
+        // create Expense table
+        public static final String CREATE_TABLE =
+                "CREATE TABLE expense (_id INTEGER PRIMARY KEY AUTOINCREMENT, sub_id TEXT NOT NULL, amount TEXT NOT NULL, invoice_image_path TEXT NOT NULL, payment_mode INTEGER NOT NULL, title TEXT NOT NULL, financial_year INTEGER NOT NULL, month INTEGER NOT NULL);";
+    }
 
 }
