@@ -61,8 +61,8 @@ public class FragmentIncome extends BaseFragment implements LoaderManager.Loader
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 getActivity(),                                     // Context
-                DataProviderContract.Income.CONTENT_URI,       // Table to query
-                DataProviderContract.Income.PROJECTION,              // Projection to return
+                DataProviderContract.IncomeMaster.CONTENT_URI,       // Table to query
+                DataProviderContract.IncomeMaster.PROJECTION,              // Projection to return
                 null,                                              // No selection clause
                 null,                                              // No selection arguments
                 null                                              // Default sort order
@@ -108,6 +108,9 @@ public class FragmentIncome extends BaseFragment implements LoaderManager.Loader
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
+
+
+
 
         }
     }

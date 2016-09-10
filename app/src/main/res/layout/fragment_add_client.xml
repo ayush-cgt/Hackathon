@@ -20,12 +20,14 @@
             android:layout_marginTop="20dp">
 
             <EditText
-                android:id="@+id/input_client_namee"
+                android:id="@+id/input_client_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:hint="Enter client name"
+                android:inputType="text"
                 android:singleLine="true"
+                android:maxLength="50"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
         </android.support.design.widget.TextInputLayout>
@@ -42,6 +44,27 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:hint="Enter company name"
+                android:maxLength="50"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/email_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:inputType="textEmailAddress"
+                android:maxLength="50"
+                android:hint="Enter email"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
@@ -55,11 +78,12 @@
             android:layout_marginTop="20dp">
 
             <EditText
-                android:id="@+id/input_task_title"
+                android:id="@+id/input_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:hint="Enter country"
+                android:maxLength="50"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
@@ -77,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:hint="Enter city"
+                android:maxLength="50"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
@@ -94,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:hint="Enter zip code"
+                android:maxLength="20"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
@@ -111,6 +137,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:hint="Enter address"
+                android:maxLength="250"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
@@ -128,30 +155,15 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:hint="Enter phone"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/eamil_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <EditText
-                android:id="@+id/input_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:hint="Enter email"
+                android:inputType="phone"
+                android:maxLength="15"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_button"
+            android:id="@+id/btn_create"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"

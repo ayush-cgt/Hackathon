@@ -3,18 +3,29 @@ package com.android.myapplication;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.myapplication.common.ThresholdEditText;
+import com.android.myapplication.data.Type;
+import com.android.myapplication.db.DBHelper;
 import com.android.myapplication.fragments.AddClientFragment;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -26,8 +37,11 @@ public class AddIncomeActivity extends BaseActivity {
     private TextView dateView;
     private int year, month, day;
     private TextView textSelectDate;
-    Spinner income, income_type, client, currency, mode;
-    EditText projectName, foreignCurrency, amountINR;
+    private Spinner income, income_type, client, currency, mode;
+    private EditText projectName;
+    ThresholdEditText foreignCurrency, amountINR;
+    private Button save;
+    private TextView exchange;
 
     @Override
     protected int getLayoutResourceId() {
@@ -55,15 +69,64 @@ public class AddIncomeActivity extends BaseActivity {
         currency = (Spinner) findViewById(R.id.currency);
         income = (Spinner) findViewById(R.id.income);
         projectName = (EditText) findViewById(R.id.input_project);
-        foreignCurrency = (EditText) findViewById(R.id.input_forign);
-        amountINR = (EditText) findViewById(R.id.input_amountinr);
-
+        foreignCurrency = (ThresholdEditText) findViewById(R.id.input_forign);
+        amountINR = (ThresholdEditText) findViewById(R.id.input_amountinr);
+        save = (Button) findViewById(R.id.saveIncome);
+        exchange = (TextView) findViewById(R.id.exchange);
         textSelectDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialog(999);
             }
         });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validate()) {
+
+                }
+            }
+        });
+
+        foreignCurrency.setThresholdMillis(300);
+        foreignCurrency.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        amountINR.setThresholdMillis(300);
+        amountINR.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), DBHelper.getInstance(AddIncomeActivity.this).getTypes());
+        income.setAdapter(customAdapter);
     }
 
     private void setUpTool() {
@@ -130,5 +193,38 @@ public class AddIncomeActivity extends BaseActivity {
         return true;
     }
 
+    public class CustomAdapter extends BaseAdapter {
+        Context context;
+        ArrayList<Type> type;
+        LayoutInflater inflter;
 
+        public CustomAdapter(Context applicationContext, ArrayList<Type> type) {
+            this.context = applicationContext;
+            this.type = type;
+            inflter = (LayoutInflater.from(applicationContext));
+        }
+
+        @Override
+        public int getCount() {
+            return type.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            view = inflter.inflate(R.layout.customspinner, null);
+            TextView names = (TextView) view.findViewById(R.id.textView);
+            names.setText(type.get(i).getType());
+            return view;
+        }
+    }
 }
