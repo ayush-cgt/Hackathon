@@ -20,6 +20,12 @@ public class MyContentProvider extends ContentProvider {
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.User.TABLE_NAME, Constants.USER);
+        uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.Client.TABLE_NAME, Constants.CLIENT);
+        uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.Income.TABLE_NAME, Constants.INCOME);
+        uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.ExpenseMaster.TABLE_NAME, Constants.EXPENSE_MASTER);
+        uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.ExpenseSubType.TABLE_NAME, Constants.EXPENSE_SUBTYPE);
+        uriMatcher.addURI(DataProviderContract.AUTHORITY, DataProviderContract.Expense.TABLE_NAME, Constants.EXPENSE);
+
     }
 
     public MyContentProvider() {
@@ -65,10 +71,73 @@ public class MyContentProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
+
+        long id;
+
         switch (uriMatcher.match(uri)) {
             case Constants.USER:
                 // Inserts the row into the table and returns the new row's _id value
-                long id = db.insert(DataProviderContract.User.TABLE_NAME, "", values);
+                id = db.insert(DataProviderContract.User.TABLE_NAME, "", values);
+
+                // If the insert succeeded, notify a change and return the new row's content URI.
+                if (-1 != id) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.withAppendedPath(uri, Long.toString(id));
+                } else {
+                    throw new SQLiteException("Insert error:" + uri);
+                }
+
+            case Constants.CLIENT:
+                // Inserts the row into the table and returns the new row's _id value
+                id = db.insert(DataProviderContract.Client.TABLE_NAME, "", values);
+
+                // If the insert succeeded, notify a change and return the new row's content URI.
+                if (-1 != id) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.withAppendedPath(uri, Long.toString(id));
+                } else {
+                    throw new SQLiteException("Insert error:" + uri);
+                }
+
+            case Constants.INCOME:
+                // Inserts the row into the table and returns the new row's _id value
+                id = db.insert(DataProviderContract.Income.TABLE_NAME, "", values);
+
+                // If the insert succeeded, notify a change and return the new row's content URI.
+                if (-1 != id) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.withAppendedPath(uri, Long.toString(id));
+                } else {
+                    throw new SQLiteException("Insert error:" + uri);
+                }
+
+            case Constants.EXPENSE_MASTER:
+                // Inserts the row into the table and returns the new row's _id value
+                id = db.insert(DataProviderContract.ExpenseMaster.TABLE_NAME, "", values);
+
+                // If the insert succeeded, notify a change and return the new row's content URI.
+                if (-1 != id) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.withAppendedPath(uri, Long.toString(id));
+                } else {
+                    throw new SQLiteException("Insert error:" + uri);
+                }
+
+            case Constants.EXPENSE_SUBTYPE:
+                // Inserts the row into the table and returns the new row's _id value
+                id = db.insert(DataProviderContract.ExpenseSubType.TABLE_NAME, "", values);
+
+                // If the insert succeeded, notify a change and return the new row's content URI.
+                if (-1 != id) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.withAppendedPath(uri, Long.toString(id));
+                } else {
+                    throw new SQLiteException("Insert error:" + uri);
+                }
+
+            case Constants.EXPENSE:
+                // Inserts the row into the table and returns the new row's _id value
+                id = db.insert(DataProviderContract.Expense.TABLE_NAME, "", values);
 
                 // If the insert succeeded, notify a change and return the new row's content URI.
                 if (-1 != id) {
@@ -103,6 +172,81 @@ public class MyContentProvider extends ContentProvider {
                 returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
                 return returnCursor;
 
+
+            case Constants.CLIENT:
+                // Does the query against a read-only version of the database
+                returnCursor = db.query(
+                        DataProviderContract.Client.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+
+                // Sets the ContentResolver to watch this content URI for data changes
+                returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
+                return returnCursor;
+
+            case Constants.INCOME:
+                // Does the query against a read-only version of the database
+                returnCursor = db.query(
+                        DataProviderContract.Income.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+
+                // Sets the ContentResolver to watch this content URI for data changes
+                returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
+                return returnCursor;
+
+            case Constants.EXPENSE_MASTER:
+                // Does the query against a read-only version of the database
+                returnCursor = db.query(
+                        DataProviderContract.ExpenseMaster.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+
+                // Sets the ContentResolver to watch this content URI for data changes
+                returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
+                return returnCursor;
+
+            case Constants.EXPENSE_SUBTYPE:
+                // Does the query against a read-only version of the database
+                returnCursor = db.query(
+                        DataProviderContract.ExpenseSubType.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+
+                // Sets the ContentResolver to watch this content URI for data changes
+                returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
+                return returnCursor;
+
+            case Constants.EXPENSE:
+                // Does the query against a read-only version of the database
+                returnCursor = db.query(
+                        DataProviderContract.Expense.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+
+                // Sets the ContentResolver to watch this content URI for data changes
+                returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
+                return returnCursor;
 
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
